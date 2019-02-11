@@ -1,0 +1,142 @@
+/*
+Encoder:
+
+interrupt pins mega: 2, 3, 18, 19, 20, 21
+
+*/
+int L1, L2; 
+const int pin1 = 2;
+const int pin2 = 3;
+const int pin3 = 18; 
+const int pin4 = 19;  
+int PR1 = 18; 
+int PR2 = 19; 
+int back; 
+
+
+
+unsigned int rpml, rpmr; // rpm reading
+unsigned long pulses_left, pulses_right; // number of pulses
+//unsigned long timeold;
+// number of pulses per revolution
+// based on your encoder disc
+unsigned int pulsesperturn = 12;
+float temp; 
+void counter_left()
+{
+   //Update count
+   pulses_left++;
+}
+
+void counter_right()
+{
+   //Update count
+   pulses_right++;
+}
+
+
+void state_11_01(){
+    back=1; //Backwards
+    counter_left(); 
+}
+
+void state_11_10(){
+  back=0; //Forward
+  
+    counter_left(); 
+}
+
+void state_10_11(){
+  back=1; //backwards
+  
+    counter_left(); 
+}
+void state_10_00(){
+  back=0; //forward
+  
+    counter_left(); 
+}
+
+void state_01_00(){
+  back=1; //backwards
+  
+    counter_left(); 
+}
+void state_01_11(){
+  back=0; //forwards
+  
+    counter_left(); 
+}
+
+
+void state_00_01(){
+  back=0; //forward
+  
+    counter_left(); 
+}
+void state_00_10(){
+  back=1; //backward
+  
+    counter_left(); 
+}
+
+
+
+
+void setup(){
+  // put your setup code here, to run once:
+  pinMode(pin1, INPUT);   
+  pinMode(pin2, INPUT); 
+  pinMode(PR1, INPUT); 
+  pinMode(PR2, INPUT); 
+
+  Serial.begin(9600); 
+     // Initialize
+   pulses_right = 0;
+   pulses_left = 0;
+   rpml = 0;
+   rpmr = 0;
+   
+
+   attachInterrupt(digitalPinToInterrupt(pin1), counter_left, FALLING);
+   attachInterrupt(digitalPinToInterrupt(pin3), counter_right, FALLING);
+
+
+}
+void loop(){
+//  L1 = digitalRead(pin1);
+//  L2 = digitalRead(pin2); 
+//  Serial.println(String(L1)+", "+String(L2));
+  if(digitalRead(pin1) && digitalRead(pin2))//11
+  {
+    while(digitalRead(pin2))
+    attachInterrupt(digitalPinToInterrupt(pin1), state_11_01, FALLING); //bwd
+    while(digitalRead(pin1))
+    attachInterrupt(digitalPinToInterrupt(pin2), state_11_10, FALLING);//fwd
+    //Serial.print("State1"); 
+  }
+  else if(!digitalRead(pin1) && digitalRead(pin2)){ //10
+    while(!digitalRead(pin2))
+    attachInterrupt(digitalPinToInterrupt(pin1), state_10_00, FALLING); //fwd
+    while(digitalRead(pin1))
+    attachInterrupt(digitalPinToInterrupt(pin2), state_10_11, RISING); //bwd
+  }
+  else if(digitalRead(pin1) && !digitalRead(pin2)){ //01
+    while(!digitalRead(pin1))
+    attachInterrupt(digitalPinToInterrupt(pin2), state_01_00, FALLING); //bwd
+    while(digitalRead(pin2))
+    attachInterrupt(digitalPinToInterrupt(pin1), state_01_11, RISING); //fwd
+  } 
+  else if(!digitalRead(pin1) && !digitalRead(pin2)){ //00
+    while(!digitalRead(pin1))
+    attachInterrupt(digitalPinToInterrupt(pin2), state_00_01, RISING); //fwd
+    while(!digitalRead(pin2))
+    attachInterrupt(digitalPinToInterrupt(pin1), state_00_10, RISING); //bwd
+  }
+//  detachInterrupt(digitalPinToInterrupt(pin1)); 
+//  detachInterrupt(digitalPinToInterrupt(pin2)); 
+//  delay(200);  
+      
+ Serial.println(back?"Reverse":"Forward");
+ Serial.println(pulses_left/13); 
+}
