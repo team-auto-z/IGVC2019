@@ -1,0 +1,8 @@
+prefix=/home/ajinkya/catkin_ws/install
+
+Name: key_teleop
+Description: Description of key_teleop
+Version: 0.2.6
+Cflags: 
+Libs: -L/home/ajinkya/catkin_ws/install/lib 
+Requires: 

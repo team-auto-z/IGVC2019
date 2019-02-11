@@ -1,0 +1,8 @@
+prefix=/home/ajinkya/catkin_ws/install
+
+Name: autoz
+Description: Description of autoz
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/ajinkya/catkin_ws/install/lib 
+Requires: 

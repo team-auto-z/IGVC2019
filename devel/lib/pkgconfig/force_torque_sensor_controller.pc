@@ -1,0 +1,8 @@
+prefix=/home/ajinkya/catkin_ws/devel
+
+Name: force_torque_sensor_controller
+Description: Description of force_torque_sensor_controller
+Version: 0.14.2
+Cflags: -I/home/ajinkya/catkin_ws/src/ros_controllers/force_torque_sensor_controller/include
+Libs: -L/home/ajinkya/catkin_ws/devel/lib -lforce_torque_sensor_controller
+Requires: controller_interface geometry_msgs hardware_interface pluginlib realtime_tools roscpp

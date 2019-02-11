@@ -1,0 +1,8 @@
+prefix=/home/ajinkya/catkin_ws/devel
+
+Name: forward_command_controller
+Description: Description of forward_command_controller
+Version: 0.14.2
+Cflags: -I/home/ajinkya/catkin_ws/src/ros_controllers/forward_command_controller/include
+Libs: -L/home/ajinkya/catkin_ws/devel/lib 
+Requires: controller_interface hardware_interface std_msgs realtime_tools
