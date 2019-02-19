@@ -670,7 +670,7 @@ if(digitalRead(pin3) && digitalRead(pin4))//11
 //    rw.data = cntr;
 //    rwheel_chatter.publish( &rw );
     
-//   nh.spinOnce();
+   nh.spinOnce();
 
   }
 
