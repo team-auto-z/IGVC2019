@@ -1,2 +1,2 @@
-autoz:differential-drive:robot_setup_tf:rplidar_ros:teleop_tools/joy_teleop:teleop_tools/key_teleop:teleop_tools/mouse_teleop:teleop_tools/teleop_tools:teleop_tools/teleop_tools_msgs
+autoz:differential-drive:husky/husky_base:husky/husky_bringup:husky/husky_control:husky/husky_description:husky/husky_desktop:husky/husky_gazebo:husky/husky_msgs:husky/husky_navigation:husky/husky_robot:husky/husky_simulator:husky/husky_viz:robot_setup_tf:rplidar_ros:teleop_tools/joy_teleop:teleop_tools/key_teleop:teleop_tools/mouse_teleop:teleop_tools/teleop_tools:teleop_tools/teleop_tools_msgs
 -DCATKIN_DEVEL_PREFIX=/home/ajinkya/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ajinkya/catkin_ws/install -G Unix Makefiles

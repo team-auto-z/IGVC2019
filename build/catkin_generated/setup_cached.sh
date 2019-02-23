@@ -8,6 +8,7 @@
 
 # modified environment variables
 export CMAKE_PREFIX_PATH="/home/ajinkya/catkin_ws/devel:$CMAKE_PREFIX_PATH"
+export HUSKY_MAG_CONFIG="/home/ajinkya/catkin_ws/src/husky/husky_bringup/config/mag_config_default.yaml"
 export LD_LIBRARY_PATH="/home/ajinkya/catkin_ws/devel/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/home/ajinkya/catkin_ws/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PWD="/home/ajinkya/catkin_ws/build"
