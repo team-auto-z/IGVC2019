@@ -281,7 +281,7 @@ void updateEncoderLeft(){
 void setup()
 {
   Wire.begin();
-  Serial.begin(9600);
+  Serial.begin(57600);
   nh.initNode();
   nh.advertise(lwheel_chatter);
   nh.advertise(rwheel_chatter);
@@ -506,24 +506,26 @@ void loop()
 
 //Encoder routines
 
-detachInterrupt(digitalPinToInterrupt(20)); 
-    detachInterrupt(digitalPinToInterrupt(21)); 
     detachInterrupt(digitalPinToInterrupt(18)); 
     detachInterrupt(digitalPinToInterrupt(19)); 
+    detachInterrupt(digitalPinToInterrupt(20)); 
+    detachInterrupt(digitalPinToInterrupt(21)); 
   
-    Serial.print(encoderValueL);
-    Serial.print(" "); 
-    Serial.println(encoderValueR);
+//    Serial.print(encoderValueL);
+//    Serial.print(" "); 
+//    Serial.println(encoderValueR);
 
     lw.data = encoderValueL;
     lwheel_chatter.publish( &lw );
     rw.data = encoderValueR;
     rwheel_chatter.publish( &rw );
-  
-    attachInterrupt(digitalPinToInterrupt(20), updateEncoderLeft, HIGH); 
-    attachInterrupt(digitalPinToInterrupt(21), updateEncoderLeft, HIGH);
+
     attachInterrupt(digitalPinToInterrupt(20), updateEncoderRight, HIGH); 
     attachInterrupt(digitalPinToInterrupt(21), updateEncoderRight, HIGH);
+       attachInterrupt(digitalPinToInterrupt(18), updateEncoderLeft, HIGH); 
+    attachInterrupt(digitalPinToInterrupt(19), updateEncoderLeft, HIGH);
+  
+   
 
 
 
